@@ -1,0 +1,67 @@
+.heading_style
+{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 46px;
+    color: darkorange;
+}
+
+.text_style
+{
+    font-family:monospace;
+    font-size: 38px;
+    color: gold;
+    padding-top: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.orange {
+    color: rgb(255, 115, 0);
+}
+
+.pink {
+    color: rgb(224, 48, 130);
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: rgb(0, 183, 255);
+}
+
+.green {
+    color: rgb(3, 226, 22);
+}
+
+.golden {
+    color: rgb(218, 165, 32);
+}
+
+.white {
+    color: white;
+}
+
+.brown {
+    color: rgb(102, 51, 0);
+}
+
+.grey {
+    color: rgb(117, 111, 111);
+}
+
+.magenta {
+    color: magenta
+}
+
+.yellow {
+    color: yellow;
+}
+
+.purple {
+    color: #800080;
+}
