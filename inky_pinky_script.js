@@ -1,6 +1,9 @@
 var colors = ['red', 'blue', 'white', 'grey', 'pink', 'yellow', 'green', 'orange', 'brown', 'purple', 'magenta', 'golden']
 var answer = ''
 var chosen = false
+var interval = 0;
+var loseAudio = new Audio('lose.mp3')
+var winAudio = new Audio('win.mp3')
 
 
 // Shuffle Function 
@@ -24,16 +27,37 @@ function shuffle(array) {
 
 function chooseCol(color) {
     chosen = true;
-    if (color === answer)
-        alert('Hil ke nacho nacho!!!')
+    document.getElementsByClassName('box')[0].classList.add('hidden')
+    if (color === false) 
+        loseAudio.play()
+    else if (color === answer)
+        winAudio.play()
     else
-        alert('Puanw puanw puanw puanw...')
-    
-    window.location.reload();
+        loseAudio.play()
+    clearInterval(interval);
+}
+
+// timer function
+function timerStart (time) {
+    let timer = document.getElementById('timer');
+    timer.innerText = time
+    interval = setInterval(() => {
+        time -= 1;
+        timer.innerText = time;
+    }, 1000)
+    setTimeout((interval) => {
+        if (!chosen)
+            chooseCol(false);
+        clearInterval(interval);
+    }, time * 1000, [interval]);
 }
 
 window.addEventListener('load', () => {
     document.getElementById('startbtn').addEventListener('click', () => {
+        winAudio.pause()
+        winAudio.currentTime = 0
+        loseAudio.pause()
+        loseAudio.currentTime = 0
         document.getElementsByClassName('text_style')[0].classList.remove('hidden')
         var dots = ['.', '..', '...', '']
         var i = 0
@@ -55,6 +79,7 @@ window.addEventListener('load', () => {
             clearInterval(dotsInterval)
             document.getElementsByClassName('text_style')[0].classList.add('hidden') // I want division
             element.classList.remove('hidden')
+            
 
             // Shuffling colors
             var colNames = shuffle([...colors])
@@ -88,10 +113,9 @@ window.addEventListener('load', () => {
                 getGrid.appendChild(newRow)
             }
             getGrid.classList.remove('hidden')
-            setTimeout(() => {
-                if (!chosen)
-                    chooseCol('')
-            }, 2000)
+            document.getElementsByClassName('box')[0].classList.remove('hidden')
+            timerStart(3)
+
         }, 0 * 1000, [dotsInterval])
     })
 })
